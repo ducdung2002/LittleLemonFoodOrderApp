@@ -1,17 +1,24 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '@/constants/type';
 
 const NavigationBar: React.FC = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <View style={styles.container}>
       <Image 
         source={require('../assets/images/icon.png')} 
         style={styles.logo} 
       />
-      <Image 
-        source={require('../assets/images/favicon.png')} 
-        style={styles.profileIcon} 
-      />
+      <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+        <Image 
+          source={require('../assets/images/man-avatar-icon-free-vector.jpg')} 
+          style={styles.profileIcon} 
+        />
+      </TouchableOpacity>
     </View>
   );
 };
